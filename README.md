@@ -1,22 +1,35 @@
-# 🔐 Identity & Assets: Ownership and ERC-20 Implementation
+# 🔐 Identity & Assets: Secure ERC-20 Implementation
 
-Continuing my journey in the **Master in Blockchain Development** at **Blockchain Accelerator Academy**, these projects focus on two critical aspects of Web3 development: **Contract Ownership** and **Token Standards**.
+A reference implementation of the ERC-20 token standard using OpenZeppelin libraries, focusing on secure asset architecture and contract ownership patterns.
 
-Coming from a **Java** environment, understanding how the EVM handles user identity (`msg.sender`) and how standard interfaces (like `ERC-20`) function is crucial for building secure decentralized applications.
+## 🚀 Engineering Context
 
-## Project: Popcoin (ERC-20 Token)
+As a **Java Software Engineer**, creating a "currency" or "point system" usually involves creating a centralized database table (e.g., `UserBalances`) and writing SQL transactions to update values.
 
-**Popcoin** is a standard fungible token implementation using the industry-standard **OpenZeppelin** library.
-* **Goal:** Deploy a custom cryptocurrency that is compliant with the ERC-20 standard.
-* **Key Concept:** Inheritance and Libraries. Instead of reinventing the wheel, this project leverages secure, audited code (`ERC20.sol`) to handle balances, transfers, and approvals.
-* **Implementation:** The contract mints an initial supply of tokens (`1000 * 10^18`) to the deployer upon construction.
+In **Solidity**, assets are standardized programmable interfaces. This project explores the transition from centralized ledgers to the **ERC-20 Standard**, leveraging established industry libraries to ensure security, interoperability, and efficient access control (Ownership).
+
+## 💡 Project Overview
+
+**Popcoin** is a fully compliant fungible token implementation. Rather than reinventing the wheel with custom ledger logic, this project utilizes **OpenZeppelin's** battle-tested contracts to handle the low-level arithmetic and storage management of digital assets.
+
+### 🔍 Key Technical Features:
+
+* **Standardization & Interoperability:**
+    * **ERC-20 Protocol:** Implemented the full ERC-20 interface, ensuring the token is instantly compatible with wallets (Metamask), exchanges (DEXs), and DeFi protocols without custom integration logic.
+
+* **Security via Inheritance:**
+    * **Architecture Decision:** Instead of writing raw accounting logic (which is prone to overflow/underflow bugs), I leveraged Solidity's inheritance model to extend OpenZeppelin's `ERC20.sol`.
+    * **Benefit:** This significantly reduces the attack surface by relying on audited code for critical functions like `transfer`, `approve`, and `transferFrom`.
+
+* **Supply Management:**
+    * Implemented a fixed initial supply mechanism (`_mint`) within the constructor, allocating `1000 * 10^18` units to the deployer. This mirrors the "Genesis Block" distribution pattern common in Layer 1 networks.
 
 ## 🛠️ Stack & Tools
 
-* **Language:** Solidity `^0.8.24`
-* **Libraries:** OpenZeppelin Contracts
-* **Concepts:** `msg.sender`, Inheritance, Constructors, ERC-20 Standard.
+* **Language:** Solidity `^0.8.24`.
+* **Libraries:** OpenZeppelin Contracts (ERC20).
+* **Concepts:** Inheritance, Asset Standards, Ownership Primitives.
 
 ---
 
-*This project represents the building blocks for authentication and economy design in my Web3 portfolio.*
+*This project serves as a foundational component for decentralized economy design.*
