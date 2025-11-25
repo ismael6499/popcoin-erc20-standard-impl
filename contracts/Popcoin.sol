@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract Popcoin is ERC20 {
 
-    constructor(string memory name_, string memory symbol_) ERC20(name_,symbol_){
+    constructor(string memory _name, string memory _symbol) ERC20(_name,_symbol){
         _mint(msg.sender, 1000 * 1e18);
     }
 
