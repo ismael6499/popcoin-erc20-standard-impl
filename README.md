@@ -1,4 +1,4 @@
-# 🪙 Popcoin: Standardized ERC-20 Implementation
+# Popcoin: Standardized ERC-20 Implementation
 
 ![Solidity](https://img.shields.io/badge/Solidity-0.8.24-363636?style=flat-square&logo=solidity)
 ![Library](https://img.shields.io/badge/Library-OpenZeppelin-4E5EE4?style=flat-square&logo=openzeppelin)
