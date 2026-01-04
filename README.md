@@ -1,35 +1,42 @@
-# 🔐 Identity & Assets: Secure ERC-20 Implementation
+# 🪙 Popcoin: Standardized ERC-20 Implementation
 
-A reference implementation of the ERC-20 token standard using OpenZeppelin libraries, focusing on secure asset architecture and contract ownership patterns.
+![Solidity](https://img.shields.io/badge/Solidity-0.8.24-363636?style=flat-square&logo=solidity)
+![Library](https://img.shields.io/badge/Library-OpenZeppelin-4E5EE4?style=flat-square&logo=openzeppelin)
+![License](https://img.shields.io/badge/License-LGPL_3.0-blue?style=flat-square)
 
-## 🚀 Engineering Context
+A secure, compliant implementation of the **ERC-20 Token Standard**, engineered to serve as a composable primitive for decentralized finance (DeFi) applications.
 
-As a **Java Software Engineer**, creating a "currency" or "point system" usually involves creating a centralized database table (e.g., `UserBalances`) and writing SQL transactions to update values.
+This project prioritizes **security-by-inheritance**, utilizing battle-tested libraries to manage asset logic, ensuring immediate compatibility with wallets (MetaMask), DEXs (Uniswap), and lending protocols.
 
-In **Solidity**, assets are standardized programmable interfaces. This project explores the transition from centralized ledgers to the **ERC-20 Standard**, leveraging established industry libraries to ensure security, interoperability, and efficient access control (Ownership).
+## 🏗 Architecture & Design Decisions
 
-## 💡 Project Overview
+### 1. Security via Inheritance (OpenZeppelin)
+- **Minimizing Attack Surface:** Instead of implementing raw accounting logic—which is prone to edge-case bugs—the contract inherits from **OpenZeppelin's `ERC20`**. This leverages thousands of audits and community verification for critical state changes (`transfer`, `approve`).
+- **Standard Compliance:** Guarantees strict adherence to the EIP-20 specification, ensuring predictable behavior when interacting with other smart contracts.
 
-**Popcoin** is a fully compliant fungible token implementation. Rather than reinventing the wheel with custom ledger logic, this project utilizes **OpenZeppelin's** battle-tested contracts to handle the low-level arithmetic and storage management of digital assets.
+### 2. Supply Mechanics & Precision
+- **Immutable Supply:** Implements a fixed-supply model minted purely upon construction. This mirrors "Genesis" distribution patterns used in governance tokens and avoids the security risks associated with unprotected `mint` functions.
+- **Decimal Precision:** explicit handling of EVM arithmetic units (`amount * 10**decimals()`) to ensure the initial supply matches the expected human-readable values without precision loss.
 
-### 🔍 Key Technical Features:
+### 3. Modern Solidity Features
+- **Version 0.8.24:** Utilizes the latest Solidity compiler to benefit from built-in overflow/underflow checks (removing the need for `SafeMath`) and PUSH0 opcode optimizations (Shangai/Cancun EVM support).
 
-* **Standardization & Interoperability:**
-    * **ERC-20 Protocol:** Implemented the full ERC-20 interface, ensuring the token is instantly compatible with wallets (Metamask), exchanges (DEXs), and DeFi protocols without custom integration logic.
+## 🛠 Tech Stack
 
-* **Security via Inheritance:**
-    * **Architecture Decision:** Instead of writing raw accounting logic (which is prone to overflow/underflow bugs), I leveraged Solidity's inheritance model to extend OpenZeppelin's `ERC20.sol`.
-    * **Benefit:** This significantly reduces the attack surface by relying on audited code for critical functions like `transfer`, `approve`, and `transferFrom`.
+* **Core:** Solidity `^0.8.24`
+* **Libraries:** OpenZeppelin Contracts v5.x
+* **Standard:** ERC-20 (Fungible Token)
 
-* **Supply Management:**
-    * Implemented a fixed initial supply mechanism (`_mint`) within the constructor, allocating `1000 * 10^18` units to the deployer. This mirrors the "Genesis Block" distribution pattern common in Layer 1 networks.
+## 📝 Contract Interface
 
-## 🛠️ Stack & Tools
+The implementation exposes the standard ERC-20 interface for interoperability:
 
-* **Language:** Solidity `^0.8.24`.
-* **Libraries:** OpenZeppelin Contracts (ERC20).
-* **Concepts:** Inheritance, Asset Standards, Ownership Primitives.
+```solidity
+// Core primitives available via inheritance
+function transfer(address to, uint256 value) public virtual returns (bool);
+function approve(address spender, uint256 value) public virtual returns (bool);
+function transferFrom(address from, address to, uint256 value) public virtual returns (bool);
+```
 
 ---
-
-*This project serves as a foundational component for decentralized economy design.*
+*An implementation of decentralized value transfer infrastructure.*
